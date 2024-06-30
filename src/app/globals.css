@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+::-webkit-scrollbar {
+  width: 7px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-color-light rounded-xl border-[1px] border-color-primary
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-color-primary
+}
+
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply text-color-light bg-color-dark
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.nav-list {
+  @apply inline-block after:content-[''] after:border-b-2 after:border-color-primary after:block after:scale-x-0 hover:after:scale-x-75 after:transition after:ease-in-out after:duration-150 hover:after:transition hover:after:ease-in-out hover:after:duration-150
+}
+
+.extra-nav-rounded {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.radius-collection {
+  border-radius: 0px 6px 0px 0px
+}
+
+.loading {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  color: #0ea5e9;
+  background: 
+    conic-gradient(from 90deg at 3px 3px,#0000 90deg,currentColor 0)
+    -3px -3px/calc(50% + 1.5px) calc(50% + 1.5px);
+  animation: l28 2s infinite;
+}
+.loading::before,
+.loading::after {
+  content: "";
+  grid-area: 1/1;
+  background: repeating-conic-gradient(#0000 0 35deg,currentColor 0 90deg);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+  border-radius: 50%;
+}
+.loading::after {
+  margin: 20%;
+}
+@keyframes l28 {
+  100% {transform: rotate(1turn)}
 }

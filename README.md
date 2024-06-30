@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NOVANIME
 
-## Getting Started
+Mini social networking web application and social catalog of anime and manga
 
-First, run the development server:
-
+## Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Set up environment variables 
+Create a `.env` file in the root of project and add the following:
+```env
+NEXT_PUBLIC_API_BASE_URL = https://api.jikan.moe/v4
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+GITHUB_CLIENT = 
+GITHUB_SECRET = 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+NEXTAUTH_SECRET = 
 
-## Learn More
+DATABASE_URL=
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Make an OAuth Application on Github
+1. Go to your profile and select "Settings".
+2. Click the "Developer Setting" and click the "OAuth Apps" in the side bar.
+3. Fill out the Application Details:
+   - Application name: Enter a name for your application.
+   - Homepage URL: Enter the URL of your application's homepage,      e.g., http://localhost:3000
+   - Application Description (Optional): Provide a brief description of your application.
+   - Authorization callback URL: Enter the URL where users will be sent after authorization. This URL is used to redirect users back to your application. e.g., http://localhost:3000/api/auth/callback
+4. Click the "Register application" button.
+5. After registering, you will be taken to your application's page where you can find the Client ID and Client Secret. You will need to put these in your `.env` file: the Client ID as `GITHUB_CLIENT` and the Client Secret as `GITHUB_SECRET`.
+6. You can create a new client secret by clicking the create new client secret button.
+7. For the `NEXTAUTH_SECRET` you can fill it with any random values you choose.
+ 
+### Make and migrate Database
+1. Create Database on your MySQL: ``` CREATE DATABASE my_database ```
+2. Set the `DATABASE_URL` on your `.env`. e.g., "mysql://root:password@localhost:3306/my_database"
+3. Ensure the database name in `DATABASE_URL` matches the database you created in step 1.
+4. Migrate using this command: `npx prisma migrate dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Run the code
+```bash
+npm run dev
+```
