@@ -28,8 +28,8 @@ export default function SearchInput() {
         ref={searchRef}
         onKeyDown={handleSearch}
       />
-      <button className="w-[15%] xl:w-[10%] hover:text-color-primary transition ease-linear duration-150" onClick={handleSearch}>
-        <MagnifyingGlass className="text-4xl" />
+      <button className="w-[15%] xl:w-[10%] hover:text-color-primary transition ease-linear duration-150" title="Search" onClick={handleSearch}>
+        <MagnifyingGlass className="text-4xl mix-blend-difference" />
       </button>
     </div>
   );

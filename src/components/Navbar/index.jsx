@@ -3,11 +3,14 @@ import HamburgerMenu from "./HamburgerMenu";
 import Link from "next/link";
 import ActionButton from "./ActionButton";
 import { authUserSession } from "@/libs/auth-libs";
+import { getAnimeResponse } from "@/libs/api-libs";
 
 export default async function NavBar() {
   const user = await authUserSession();
   const actionName = user ? "Sign Out" : "Sign In";
   const actionUrl = user ? "/api/auth/signout" : "/api/auth/signin";
+  const genre = await getAnimeResponse("genres/anime")
+  const season = await getAnimeResponse("seasons")
   return (
     <header className="fixed w-full h-[10vh] top-0 right-0 left-0 backdrop-blur-[2px] flex items-center justify-between px-2 py-3 z-[9999]">
       {/* Logo */}
@@ -24,10 +27,10 @@ export default async function NavBar() {
         {/* Search Input */}
         <SearchInput />
 
-        <ActionButton user={user} actionName={actionName} actionUrl={actionUrl}/>
+        <ActionButton user={user} actionName={actionName} actionUrl={actionUrl} genreApi={genre} seasonApi={season}/>
 
         {/* Hamburger Menu */}
-        <HamburgerMenu user={user} actionName={actionName} actionUrl={actionUrl}/>
+        <HamburgerMenu user={user} actionName={actionName} actionUrl={actionUrl} genreApi={genre} seasonApi={season}/>
       </div>
     </header>
   );

@@ -1,12 +1,10 @@
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
-import NavBar from "@/components/Navbar";
 import {
   getAnimeResponse,
   getAnimeStatus,
   getNestedAnimeResponse,
   reproduce,
-  reproduces,
 } from "@/libs/api-libs";
 
 export default async function Home() {

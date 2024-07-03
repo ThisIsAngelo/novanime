@@ -16,7 +16,7 @@ export default async function Page({ params: { id } }) {
   const formatedScoredBy = scoredBy?.toLocaleString() ?? "0";
 
   const user = await authUserSession();
-  const collection = await prisma.collection.findFirst({
+  const collection = await prisma.collection?.findFirst({
     where: {
       user_email: user?.email,
       anime_mal_id: id,

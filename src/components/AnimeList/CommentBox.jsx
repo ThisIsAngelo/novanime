@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function CommentBox({ anime_mal_id }) {
-  const comments = await prisma.comment.findMany({
+  const comments = await prisma.comment?.findMany({
     where: { anime_mal_id },
   });
   return (
