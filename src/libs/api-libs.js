@@ -23,10 +23,10 @@ export async function getAnimeStatus(source,status) {
 export function reproduce(data, gap) {
   let response;
   do {
-    const first = ~~(Math.random() * (data.length - gap) + 1);
+    const first = ~~(Math.random() * (data?.length - gap) + 1);
     const last = first + gap;
     response = {
-      data: data.slice(first, last)
+      data: data?.slice(first, last)
     };
   } while (hasDuplicates(response.data, 'mal_id'));
   
@@ -34,5 +34,5 @@ export function reproduce(data, gap) {
 }
 
 function hasDuplicates(arr, key) {
-  return new Set(arr.map(item => item[key])).size!== arr.length;
+  return new Set(arr?.map(item => item[key])).size!== arr?.length;
 }
